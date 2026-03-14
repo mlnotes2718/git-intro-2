@@ -1,4 +1,4 @@
-# src/main.py
+# src/main.py  ← CORRECT VERSION with pounds support
 
 def calculate_bmi(weight_kg: float, height_m: float) -> float:
     """
@@ -19,6 +19,11 @@ def calculate_bmi(weight_kg: float, height_m: float) -> float:
     return round(bmi, 2)
 
 
+def pounds_to_kg(weight_lb: float) -> float:
+    """Convert pounds to kilograms (1 lb = 0.453592 kg)."""
+    return round(weight_lb * 0.453592, 4)
+
+
 def bmi_category(bmi: float) -> str:
     """Return the WHO BMI category for a given BMI value."""
     if bmi < 18.5:
@@ -32,7 +37,10 @@ def bmi_category(bmi: float) -> str:
 
 
 if __name__ == "__main__":
-    weight = float(input("Enter your weight in kg: "))
+    unit = input("Enter weight unit (kg / lb): ").strip().lower()
+    weight = float(input("Enter your weight: "))
+    if unit == "lb":
+        weight = pounds_to_kg(weight)
     height = float(input("Enter your height in metres: "))
     bmi = calculate_bmi(weight, height)
     print(f"Your BMI is {bmi} — {bmi_category(bmi)}")
