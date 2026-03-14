@@ -275,3 +275,4 @@ $RECYCLE.BIN/
 # personal
 #gitleaks_report.csv
 #trivy-report.txt
+secrets.json
